@@ -1,96 +1,96 @@
 # Car Price Prediction
 
-A machine learning regression project focused on predicting used car selling prices using structured vehicle data. This project demonstrates end-to-end model development, including data preprocessing, exploratory data analysis, feature engineering, model training, and evaluation.
+A machine learning regression project focused on predicting car prices using structured vehicle specifications. The notebook demonstrates an end-to-end workflow including data loading, cleaning, exploratory data analysis (EDA), feature engineering, model training, and evaluation.
 
 ---
 
 ## 📌 Project Overview
 
-The objective of this project is to build a robust regression model capable of estimating the selling price of a car based on key attributes such as manufacturing year, fuel type, transmission, ownership history, and kilometers driven.
+The goal of this project is to build a regression model that estimates a car’s **price** from a mix of numerical and categorical attributes (e.g., brand, engine characteristics, fuel system, body type).  
 
-This project highlights:
+This notebook covers:
 
-- Structured data preprocessing techniques  
-- Feature encoding and transformation  
-- Regression model comparison  
-- Performance evaluation using industry-standard metrics  
-- Interpretation of feature importance  
-
-The final model provides reliable price predictions that can support data-driven decision-making in automotive resale markets.
+- Data cleaning and preprocessing  
+- Brand extraction and normalization from the car name  
+- Exploratory visualizations and basic statistical checks  
+- Feature engineering (including brand-level price aggregation)  
+- Regression modeling using **Linear Regression**  
+- Evaluation using error metrics and **R²**
 
 ---
 
-## 📊 Dataset Description
+## 📊 Dataset
 
-The dataset contains structured information about used cars. Key features include:
+The notebook loads the dataset directly from an online source:
 
-- Car Name / Brand  
-- Year  
-- Present Price  
-- Kilometers Driven  
-- Fuel Type  
-- Seller Type  
-- Transmission  
-- Number of Owners  
-- Selling Price (Target Variable)  
+- `CarPrice_Assignment.csv` (loaded via a URL inside the notebook)
 
-The target variable for prediction is **Selling Price**.
+The dataset contains vehicle-level attributes such as:
+
+- Car brand (extracted from `CarName`)
+- Engine and fuel characteristics
+- Body style / car type attributes
+- Numerical technical specifications
+- **Price** (target variable)
+
+**Target:** `price`
 
 ---
 
 ## 🔎 Exploratory Data Analysis (EDA)
 
-The exploratory phase focused on understanding relationships between features and the target variable. Key steps included:
+The EDA process includes:
 
-- Inspecting data distributions  
-- Identifying correlations between variables  
-- Detecting outliers  
-- Evaluating categorical feature impact  
-- Visualizing trends using histograms, scatter plots, and heatmaps  
+- Reviewing data types, summary statistics, missing values, and duplicates  
+- Exploring car brand distributions (count plot)  
+- Inspecting key feature behavior and relationships with the target variable  
+- Checking for distribution / normality behavior (where applicable)
 
-Insights from EDA guided feature selection and preprocessing decisions.
+EDA insights guide the feature preparation steps used later in modeling.
 
 ---
 
 ## ⚙️ Data Preprocessing & Feature Engineering
 
-To ensure model accuracy and stability, the following steps were implemented:
+Key preprocessing and feature engineering steps implemented in the notebook:
 
-- Removal of irrelevant features  
-- Encoding categorical variables using appropriate techniques  
-- Creating derived features (e.g., car age from manufacturing year)  
-- Handling skewness in numerical data  
-- Train-test data splitting  
-- Feature scaling where required  
-
-These transformations improved model performance and generalization.
+- Extracting `brand` from `CarName` and normalizing inconsistent spellings (e.g., “vw” → “volkswagen”)  
+- Dropping non-essential columns (e.g., identifiers and raw name fields)  
+- Creating a **brand average price** feature by grouping and merging brand-level mean price  
+- Creating categorical groupings derived from brand average pricing (brand category)  
+- Handling categorical variables via:
+  - Manual dummy encoding, and/or  
+  - `OneHotEncoder` using `ColumnTransformer` inside a `Pipeline`
+- Train/test split using `train_test_split`
+- Feature scaling using `StandardScaler`
 
 ---
 
 ## 🤖 Model Development
 
-Multiple regression algorithms were implemented and compared:
+The notebook trains and evaluates **Linear Regression** using:
 
-- Linear Regression  
-- Ridge Regression  
-- Lasso Regression  
-- Decision Tree Regressor  
-- Random Forest Regressor  
+- A standard approach with `StandardScaler` + `LinearRegression`
+- A scikit-learn **Pipeline** for cleaner preprocessing + modeling
+- A Pipeline variant using:
+  - `ColumnTransformer` + `OneHotEncoder` for categorical features
+  - `StandardScaler`
+  - `LinearRegression`
 
-Each model was evaluated to determine its predictive performance and robustness.
+✅ **Models used in the notebook:**  
+- **Linear Regression** (including pipeline-based implementations)
 
 ---
 
 ## 📈 Model Evaluation
 
-Model performance was assessed using:
+Model performance is evaluated using:
 
-- R² Score  
-- Mean Absolute Error (MAE)  
-- Mean Squared Error (MSE)  
-- Root Mean Squared Error (RMSE)  
+- **Mean Squared Error (MSE)**
+- **Root Mean Squared Error (RMSE)**
+- **R² Score**
 
-Comparative analysis identified the best-performing model based on predictive accuracy and generalization capability.
+These metrics are computed on the test split to estimate generalization performance.
 
 ---
 
@@ -101,6 +101,7 @@ Comparative analysis identified the best-performing model based on predictive ac
 - Pandas  
 - Matplotlib  
 - Seaborn  
+- SciPy  
 - Scikit-learn  
 - Jupyter Notebook  
 
@@ -108,5 +109,6 @@ Comparative analysis identified the best-performing model based on predictive ac
 
 ## 🚀 How to Run the Project
 
-### Clone the repository
-
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/car-price-prediction.git
