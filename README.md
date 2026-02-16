@@ -13,7 +13,7 @@ This notebook covers:
 - Data cleaning and preprocessing  
 - Brand extraction and normalization from the car name  
 - Exploratory visualizations and basic statistical checks  
-- Feature engineering (including brand-level price aggregation)  
+- Feature engineering (including brand level price aggregation)  
 - Regression modeling using **Linear Regression**  
 - Evaluation using error metrics and **R²**
 
@@ -56,7 +56,7 @@ Key preprocessing and feature engineering steps implemented in the notebook:
 
 - Extracting `brand` from `CarName` and normalizing inconsistent spellings (e.g., “vw” → “volkswagen”)  
 - Dropping non-essential columns (e.g., identifiers and raw name fields)  
-- Creating a **brand average price** feature by grouping and merging brand-level mean price  
+- Creating a **brand average price** feature by grouping and merging brand level mean price  
 - Creating categorical groupings derived from brand average pricing (brand category)  
 - Handling categorical variables via:
   - Manual dummy encoding, and/or  
@@ -107,8 +107,29 @@ These metrics are computed on the test split to estimate generalization performa
 
 ---
 
-## 🚀 How to Run the Project
+## 📌 Key Outcomes
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/car-price-prediction.git
+- Built a working **Linear Regression** model to predict car prices  
+- Implemented preprocessing and modeling using both manual steps and **scikit-learn Pipelines**  
+- Evaluated model performance using **MSE**, **RMSE**, and **R²** to validate predictive capability  
+
+---
+
+## 🔮 Future Enhancements
+
+- Add regularized regression variants (**Ridge**, **Lasso**) for comparison  
+- Perform hyperparameter tuning with cross-validation  
+- Add model interpretability (coefficient analysis, permutation importance, SHAP)  
+- Package the pipeline for deployment using **Flask** or **FastAPI**  
+
+---
+
+## 📄 License
+
+This project is intended for educational and portfolio purposes.
+
+---
+
+## 👨‍💻 Author
+
+Developed as part of a machine learning portfolio to demonstrate regression modeling, preprocessing pipelines, feature engineering, and evaluation on structured automotive data.
